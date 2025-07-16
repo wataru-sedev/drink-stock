@@ -80,7 +80,7 @@ export default function Home() {
 
   return (
     <div>
-      <div className="relative overflow-x-auto shadow-md sm:rounded-lg m-2 mt-16">
+      <div className="relative overflow-x-auto sm:rounded-lg m-2 mt-16">
         <table className="w-full text-sm text-left text-gray-500">
           <thead className="text-sm text-gray-700 bg-gray-100">
             <tr>
@@ -93,7 +93,6 @@ export default function Home() {
           <tbody>
             {drinkStocks.map((drink, index) => {
               const { name, japaneseName, required, memo, quantity } = drink;
-              const isSimple = name === "TANSAN" || name === "ARASHIYAMA-COLA";
               return (
                 <tr key={name} className="bg-white border-b hover:bg-gray-50">
                   <td
@@ -110,8 +109,6 @@ export default function Home() {
                       className="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2"
                     />
                   </td>
-                  {!isSimple && (
-                    <>
                       <td className="px-1 py-4 sm:px-6">
                         {required}
                       </td>
@@ -132,14 +129,6 @@ export default function Home() {
                           </button>
                         </div>
                       </td>
-                    </>
-                  )}
-                  {isSimple && (
-                    <>
-                      <td className="px-1 py-4 sm:px-6"></td>
-                      <td className="px-4 py-2 sm:px-6"></td>
-                    </>
-                  )}
                 </tr>
               );
             })}

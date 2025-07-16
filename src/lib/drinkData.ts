@@ -1,7 +1,7 @@
 export type Drink = {
   name: string;
   japaneseName: string;
-  required: number;
+  required?: number;
   memo?: string;
   quantity?: number;
 }
@@ -91,15 +91,5 @@ export const Drinks:Drink[] = [
     name: "ORANGE",
     japaneseName: "オレンジジュース(2/3)",
     required: 2,
-  },
-  {
-    name: "TANSAN",
-    japaneseName: "炭酸(3)",
-    required: 0,
-  },
-  {
-    name: "ARASHIYAMA-COLA",
-    japaneseName: "嵐山コーラ(3)",
-    required: 0,
   },
 ];
