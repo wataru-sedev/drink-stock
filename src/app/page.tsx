@@ -3,6 +3,8 @@
 import { Drink, Drinks } from "@/lib/drinkData";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
+import { db } from "@/lib/firebase";
+import { collection, getDocs, writeBatch, doc, setDoc } from "firebase/firestore";
 
 const LOCAL_STORAGE_KEY = 'drinkMemos';
 
@@ -16,7 +18,7 @@ export default function Home() {
     const initialStocks = Drinks.map(drink => ({
       ...drink,
       memo: memos[drink.name] || '', 
-      quantity: '',
+      quantity: undefined,
     }));
     setDrinkStocks(initialStocks);
   }, []);
@@ -42,17 +44,39 @@ export default function Home() {
 
   const onChangeQuantity = (index: number, value: string) => {
     const newDrinkStocks = [...drinkStocks];
-    newDrinkStocks[index].quantity = value;
+    newDrinkStocks[index].quantity = value === '' ? undefined : parseInt(value, 10);
     setDrinkStocks(newDrinkStocks);
   }
 
-  const onClickComplete = () => toast.success('入力が完了しました');
-
   const handleSetOverstock = (index: number) => {
     const newDrinkStocks = [...drinkStocks];
-    newDrinkStocks[index].quantity = '100'; 
+    newDrinkStocks[index].quantity = 100; 
     setDrinkStocks(newDrinkStocks);
   };
+
+  const onClickComplete = async() => {
+    const hasEmptyField = drinkStocks.some((drink) => {
+            if (drink.quantity === undefined ) {
+              toast.error("入力されていない項目があります。");
+              return true;
+            }
+            return false;
+          });
+    if (hasEmptyField) return;
+    try {
+      const batch = writeBatch(db);
+      drinkStocks.forEach((drink) => {
+        const { name, quantity } = drink;
+        const docRef = doc(db, "inventory", name);
+        batch.update(docRef, { quantity: quantity });
+      });
+      await batch.commit();
+      toast.success('在庫データを更新しました');
+      setDrinkStocks(drinkStocks.map(drink => ({ ...drink,memo:'', quantity: undefined })));
+    } catch (error) {
+      console.error("更新エラー:", error);
+    }
+  }
 
   return (
     <div>
@@ -69,6 +93,7 @@ export default function Home() {
           <tbody>
             {drinkStocks.map((drink, index) => {
               const { name, japaneseName, required, memo, quantity } = drink;
+              const isSimple = name === "TANSAN" || name === "ARASHIYAMA-COLA";
               return (
                 <tr key={name} className="bg-white border-b hover:bg-gray-50">
                   <td
@@ -79,39 +104,49 @@ export default function Home() {
                   </td>
                   <td className="px-4 py-2 sm:px-6">
                     <input
-                      type="number"
-                      value={ memo || '' }
+                      type="text"
+                      value={memo || ''}
                       onChange={(e) => onChangeMemo(index, e.target.value)}
                       className="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2"
                     />
                   </td>
-                  <td className="px-1 py-4 sm:px-6">
-                    { required }
-                  </td>
-                  <td className="px-4 py-2 sm:px-6">
-                    <div className="flex items-center gap-2">
-                      <input
-                        type="number"
-                        value={ quantity || '' }
-                        onChange={(e) => onChangeQuantity(index, e.target.value)}
-                        className="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2"
-                      />
-                      <button 
-                        onClick={() => handleSetOverstock(index)}
-                        className="p-2 text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700"
-                        title="在庫十分"
-                      >
-                        ✓
-                      </button>
-                    </div>
-                  </td>
+                  {!isSimple && (
+                    <>
+                      <td className="px-1 py-4 sm:px-6">
+                        {required}
+                      </td>
+                      <td className="px-4 py-2 sm:px-6">
+                        <div className="flex items-center gap-2">
+                          <input
+                            type="number"
+                            value={quantity === undefined ? '' : quantity}
+                            onChange={(e) => onChangeQuantity(index, e.target.value)}
+                            className="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2"
+                          />
+                          <button
+                            onClick={() => handleSetOverstock(index)}
+                            className="p-2 text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700"
+                            title="在庫十分"
+                          >
+                            ✓
+                          </button>
+                        </div>
+                      </td>
+                    </>
+                  )}
+                  {isSimple && (
+                    <>
+                      <td className="px-1 py-4 sm:px-6"></td>
+                      <td className="px-4 py-2 sm:px-6"></td>
+                    </>
+                  )}
                 </tr>
               );
             })}
           </tbody>
         </table>
-        <button onClick={ onClickComplete } className="w-full mt-2 text-center bg-gray-800 text-white rounded px-4 py-2 hover:cursor-pointer hover:shadow-lg">入力完了</button>
-        <a className="block w-full mt-2 text-center bg-white text-gray-800 rounded px-4 py-2 border border-gray-800 hover:cursor-pointer hover:shadow-lg" target="_blank" rel="noopener noreferrer" href="">店長に送信</a>
+        <button onClick={ onClickComplete } className="w-full mt-2 text-center bg-gray-900 text-white rounded px-4 py-2 hover:cursor-pointer hover:shadow-lg">入力完了</button>
+        <a className="block w-full mt-2 text-center bg-white text-gray-900 rounded px-4 py-2 border border-gray-800 hover:cursor-pointer hover:shadow-lg" target="_blank" rel="noopener noreferrer" href="https://script.google.com/macros/s/AKfycbxDpzgeKl4T7olwtBGdrPgBGDxoFMd9weufG9icir1m4CQtbYGwVWdPvHalrVUThGR_/exec">店長に送信</a>
       </div>
     </div>
   );
