@@ -80,7 +80,7 @@ export default function Home() {
 
   return (
     <div>
-      <div className="relative overflow-x-auto shadow-md sm:rounded-lg m-2">
+      <div className="relative overflow-x-auto shadow-md sm:rounded-lg m-2 mt-16">
         <table className="w-full text-sm text-left text-gray-500">
           <thead className="text-sm text-gray-700 bg-gray-100">
             <tr>
@@ -145,8 +145,8 @@ export default function Home() {
             })}
           </tbody>
         </table>
-        <button onClick={ onClickComplete } className="w-full mt-2 text-center bg-gray-900 text-white rounded px-4 py-2 hover:cursor-pointer hover:shadow-lg">入力完了</button>
-        <a className="block w-full mt-2 text-center bg-white text-gray-900 rounded px-4 py-2 border border-gray-800 hover:cursor-pointer hover:shadow-lg" target="_blank" rel="noopener noreferrer" href="https://script.google.com/macros/s/AKfycbxDpzgeKl4T7olwtBGdrPgBGDxoFMd9weufG9icir1m4CQtbYGwVWdPvHalrVUThGR_/exec">店長に送信</a>
+        <button onClick={ onClickComplete } className="w-full mt-4 text-center bg-gray-900 text-white rounded px-4 py-2 hover:cursor-pointer hover:shadow-lg">入力完了</button>
+        <a className="block w-full mt-4 mb-8 text-center bg-white text-gray-900 rounded px-4 py-2 border border-gray-800 hover:cursor-pointer hover:shadow-lg" target="_blank" rel="noopener noreferrer" href="https://script.google.com/macros/s/AKfycbxDpzgeKl4T7olwtBGdrPgBGDxoFMd9weufG9icir1m4CQtbYGwVWdPvHalrVUThGR_/exec">店長に送信</a>
       </div>
     </div>
   );
