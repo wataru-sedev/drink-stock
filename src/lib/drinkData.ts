@@ -89,7 +89,7 @@ export const Drinks:Drink[] = [
   },
   {
     name: "ORANGE",
-    japaneseName: "オレンジジュース(2/3)",
+    japaneseName: "オレンジ(2/3)",
     required: 2,
   },
 ];
