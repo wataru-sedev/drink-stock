@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ドリンクチェッカー",
-  description: "Drink Stock Manager",
+  title: "ぎゃあてい",
+  description: "gyatei manager",
 };
 
 export default function RootLayout({
