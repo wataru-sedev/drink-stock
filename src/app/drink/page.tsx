@@ -3,7 +3,7 @@
 import { Drink, Drinks } from "@/lib/drinkData";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
-import { db } from "@/lib/firebase/drink";
+import { db } from "@/lib/firebase/firabase";
 import { writeBatch, doc } from "firebase/firestore";
 
 const LOCAL_STORAGE_KEY = 'drinkMemos';

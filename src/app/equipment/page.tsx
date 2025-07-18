@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { writeBatch, doc } from "firebase/firestore";
-import { db } from "@/lib/firebase/equipment";
+import { db } from "@/lib/firebase/firabase";
 import { Equipment, Equipments } from "@/lib/equipmentData";
 import { toast } from "sonner";
 
