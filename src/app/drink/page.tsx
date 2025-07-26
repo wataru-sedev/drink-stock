@@ -134,15 +134,15 @@ export default function Home() {
             })}
             <tr className="bg-white border-b hover:bg-gray-50">
               <td className="text-gray-900 font-medium px-3 py-3 sm:px-6">炭酸水(3)</td>
-              <td className="px-3 py-3 sm:px-6 text-xs">開発中..</td>
+              <td className="px-3 py-3 sm:px-6 text-xs">開発中...</td>
               <td className="px-1 py-3 sm:px-6"></td>
-              <td className="px-4 py-3 sm:px-6 text-xs">テスト終わりに作ります</td>
+              <td className="px-4 py-3 sm:px-6 text-xs"></td>
             </tr>
             <tr className="bg-white border-b hover:bg-gray-50">
               <td className="text-gray-900 font-medium px-3 py-3 sm:px-6">嵐山コーラ(1)</td>
-              <td className="px-3 py-3 sm:px-6 text-xs"> 開発中.. </td>
+              <td className="px-3 py-3 sm:px-6 text-xs">開発中...</td>
               <td className="px-1 py-3 sm:px-6"></td>
-              <td className="px-4 py-3 sm:px-6 text-xs">テスト終わりに作ります</td>
+              <td className="px-4 py-3 sm:px-6 text-xs"></td>
             </tr>
           </tbody>
         </table>
