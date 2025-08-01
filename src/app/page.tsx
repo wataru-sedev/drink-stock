@@ -1,4 +1,4 @@
-import { BottleWine, Package } from 'lucide-react';
+import { BottleWine, ChartLine, Package } from 'lucide-react';
 import Link from 'next/link';
 
 export default function HomePage() {
@@ -25,6 +25,15 @@ export default function HomePage() {
             </h2>
             <p className="m-0 text-gray-600">
               備品の在庫チェックはこちらから。
+            </p>
+          </Link>
+          <Link href="/dashboard" className="group flex-1 rounded-lg border border-gray-200 bg-white p-6 text-left shadow-sm transition-all hover:shadow-lg hover:-translate-y-1">
+            <h2 className="flex mb-3 text-2xl font-semibold">
+              <ChartLine />
+              来店状況
+            </h2>
+            <p className="m-0 text-gray-600">
+              最近の来店人数はこちらから。
             </p>
           </Link>
         </div>
