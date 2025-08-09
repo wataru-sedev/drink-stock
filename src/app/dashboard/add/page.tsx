@@ -31,6 +31,8 @@ export default function DataInputForm () {
       setDate('');
       setCount('');
 
+      router.push('/dashboard'); 
+
     } catch (error) {
       console.error("Error adding document: ", error);
       setMessage('データの追加に失敗しました。');
@@ -38,7 +40,6 @@ export default function DataInputForm () {
   };
 
   const router = useRouter();
-  const backDashboard = () => router.push('/dashboard');
 
   return (
     <div className="w-full max-w-md p-4 bg-white shadow-md rounded-lg mt-16 mb-6 ">
@@ -74,7 +75,6 @@ export default function DataInputForm () {
         <button
           type="submit"
           className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-gray-800 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-          onClick={() => backDashboard()}
         >
           追加/更新
         </button>

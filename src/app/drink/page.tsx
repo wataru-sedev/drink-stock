@@ -85,9 +85,9 @@ export default function Home() {
           <thead className="text-sm text-gray-700 bg-gray-100">
             <tr>
               <th scope="col" className="px-3 py-3 sm:px-6">ドリンク名</th>
-              <th scope="col" className="px-3 py-3 sm:px-6">メモ</th>
+              <th scope="col" className="px-1 py-3 sm:px-6">メモ</th>
               <th scope="col" className="px-1 py-3 sm:px-6">定数</th>
-              <th scope="col" className="px-4 py-3 sm:px-6">在庫数</th>
+              <th scope="col" className="pl-4 pr-2 py-3 sm:px-6">在庫数</th>
             </tr>
           </thead>
           <tbody>
@@ -101,18 +101,18 @@ export default function Home() {
                   >
                     {japaneseName}
                   </td>
-                  <td className="px-3 py-2 sm:px-6">
+                  <td className="px-1 py-2 sm:px-6">
                     <input
                       type="number"
                       value={memo || ''}
                       onChange={(e) => onChangeMemo(index, e.target.value)}
-                      className="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2"
+                      className="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-1"
                     />
                   </td>
                       <td className="px-1 py-4 sm:px-6">
                         {required}
                       </td>
-                      <td className="px-4 py-2 sm:px-6">
+                      <td className="pl-4 pr-2 py-2 sm:px-6">
                         <div className="flex items-center gap-2">
                           <input
                             type="number"
@@ -122,7 +122,7 @@ export default function Home() {
                           />
                           <button
                             onClick={() => handleSetOverstock(index)}
-                            className="p-2 text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700"
+                            className="p-1 text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700"
                             title="在庫十分"
                           >
                             ✓
@@ -134,15 +134,25 @@ export default function Home() {
             })}
             <tr className="bg-white border-b hover:bg-gray-50">
               <td className="text-gray-900 font-medium px-3 py-3 sm:px-6">炭酸水(3)</td>
-              <td className="px-3 py-3 sm:px-6 text-xs">開発中...</td>
+              <td className="px-1 py-2 sm:px-6">
+                <input
+                  type="number"
+                  className="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-1"
+                />
+              </td>
               <td className="px-1 py-3 sm:px-6"></td>
-              <td className="px-4 py-3 sm:px-6 text-xs"></td>
+              <td className="pl-4 pr-2 py-3 sm:px-6 text-xs"></td>
             </tr>
             <tr className="bg-white border-b hover:bg-gray-50">
               <td className="text-gray-900 font-medium px-3 py-3 sm:px-6">嵐山コーラ(1)</td>
-              <td className="px-3 py-3 sm:px-6 text-xs">開発中...</td>
+              <td className="px-1 py-2 sm:px-6">
+                <input
+                  type="number"
+                  className="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-1"
+                />
+              </td>
               <td className="px-1 py-3 sm:px-6"></td>
-              <td className="px-4 py-3 sm:px-6 text-xs"></td>
+              <td className="px-4 pr-2 py-3 sm:px-6 text-xs"></td>
             </tr>
           </tbody>
         </table>
