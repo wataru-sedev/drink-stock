@@ -38,7 +38,7 @@ export default function DashboardPage() {
       <h1 className="text-2xl font-bold mt-16 mb-6">店舗ダッシュボード</h1>
       <div className="w-full max-w-4xl mt-6">
         <h2 className="text-xl font-semibold mb-4">来店人数グラフ</h2>
-        <div className="relative h-[50vh] w-full p-4 bg-white shadow-lg rounded-lg">
+        <div className="relative h-[50vh] w-full p-4 bg-white shadow-lg rounded-lg overflow-x-auto">
           {isLoading ? (
             <p>データを読み込み中...</p>  
           ) : Object.keys(visitorData).length > 0 ? (
