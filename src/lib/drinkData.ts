@@ -28,9 +28,9 @@ export const Drinks:Drink[] = [
     required: 10,
   },
   {
-    name: "ASAHI_SUPER_DRY",
-    japaneseName: "アサヒ(10)",
-    required: 10,
+    name: "YUZU_CIDER",
+    japaneseName: "ゆずサイダー(10)",
+    required: 15,
   },
   {
     name: "YUZU_CHUHAI",
@@ -43,6 +43,16 @@ export const Drinks:Drink[] = [
     required: 10,
   },
   {
+    name: "ASAHI_SUPER_DRY",
+    japaneseName: "アサヒ(10)",
+    required: 10,
+  },
+  {
+    name: "ALL_FREE",
+    japaneseName: "オールフリー(8)",
+    required: 10,
+  },
+  {
     name: "GYOKURO_UMESHU",
     japaneseName: "玉露梅酒(5)",
     required: 10,
@@ -50,21 +60,6 @@ export const Drinks:Drink[] = [
   {
     name: "HANNARI_UMESHU",
     japaneseName: "京はんなり梅酒(5)",
-    required: 10,
-  },
-  {
-    name: "YUZU_CIDER",
-    japaneseName: "ゆずサイダー(10)",
-    required: 15,
-  },
-  {
-    name: "COLA",
-    japaneseName: "コーラ(10)",
-    required: 10,
-  },
-  {
-    name: "ALL_FREE",
-    japaneseName: "オールフリー(8)",
     required: 10,
   },
   {
@@ -86,6 +81,11 @@ export const Drinks:Drink[] = [
     name: "GESSHOU",
     japaneseName: "げっしょう(1)",
     required: 1,
+  },
+  {
+    name: "COLA",
+    japaneseName: "コーラ(10)",
+    required: 10,
   },
   {
     name: "ORANGE",

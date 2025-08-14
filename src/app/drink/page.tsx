@@ -4,7 +4,7 @@ import { Drink, Drinks } from "@/lib/drinkData";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { db } from "@/lib/firebase/firabase";
-import { writeBatch, doc } from "firebase/firestore";
+import { writeBatch, doc, getDoc } from "firebase/firestore";
 
 const LOCAL_STORAGE_KEY = 'drinkMemos';
 
@@ -54,6 +54,31 @@ export default function Home() {
     setDrinkStocks(newDrinkStocks);
   };
 
+  const onClickFetchData = async () => {
+    try {
+      const updatedStocks = await Promise.all(
+        drinkStocks.map(async (drink) => {
+          const docRef = doc(db, "inventory", drink.name);
+          const docSnap = await getDoc(docRef);
+          if (docSnap.exists()) {
+            const data = docSnap.data();
+            return {
+              ...drink,
+              quantity: data.quantity !== undefined ? data.quantity : undefined,
+            };
+          } else {
+            return { ...drink };
+          }
+        })
+      );
+      setDrinkStocks(updatedStocks);
+      toast.success("前回データを読み込みました");
+    } catch (error) {
+      toast.error("データの取得に失敗しました");
+      console.error(error);
+    }
+  };
+
   const onClickComplete = async() => {
     const hasEmptyField = drinkStocks.some((drink) => {
             if (drink.quantity === undefined ) {
@@ -81,6 +106,7 @@ export default function Home() {
   return (
     <div>
       <div className="relative overflow-x-auto sm:rounded-lg m-2 mt-16">
+        <button onClick={ onClickFetchData } className="w-full mt-2 mb-4 text-center bg-gray-900 text-white rounded px-4 py-2 hover:cursor-pointer hover:shadow-lg">前回データ読み込み</button>
         <table className="w-full text-sm text-left text-gray-500">
           <thead className="text-sm text-gray-700 bg-gray-100">
             <tr>
