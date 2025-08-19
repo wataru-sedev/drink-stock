@@ -47,57 +47,55 @@ export const VisitorChart = ({ visitorData }: VisitorChartProps) => {
   };
 
   const options = {
-    responsive: true, 
-    maintainAspectRatio: false, // アスペクト比を維持しない
+    responsive: true,
+    maintainAspectRatio: false,
     plugins: {
       legend: {
         position: 'top' as const,
       },
       title: {
         display: true,
-        text: '日別 来店人数推移',
+        text: '来店人数推移',
       },
       datalabels: {
-        anchor: 'end',      
-        align: 'top',       
-        offset: 1,          
-        color: '#333',      
+        anchor: 'end',
+        align: 'top',
+        offset: 1,
+        color: '#333',
         font: {
-          weight: 'bold',   
-          size: 9, 
+          weight: 'bold',
+          size: 9,
         },
       },
     },
     scales: {
       y: {
-        beginAtZero: true
+        beginAtZero: true,
+        grid: {
+          color: (ctx: any) => {
+            const value = ctx.tick.value;
+            if (value === 50 || value === 100 || value === 150) {
+              return '#999'; 
+            }
+            return 'rgba(0,0,0,0.1)'; 
+          },
+        },
+        ticks:{
+        stepSize: 10,
+      },
       },
       x: {
         ticks: {
           callback: function(value: any, index: number, ticks: any): string {
-            // `value`はlabels配列のインデックスです。
-            // `this`を使わず、直接`labels`配列から現在のラベルを取得します。
             const currentLabel = labels[value as number];
-
-            // データのラベルが存在しない場合は空文字を返す (安全対策)
-            if (!currentLabel) {
-                return '';
-            }
-            
-            // 最初のラベルは年を省略しない
-            if (index === 0) {
-                return currentLabel;
-            }
-
-            // 1つ前のティック（目盛り）のインデックスを取得
+            if (!currentLabel) return '';
+            if (index === 0) return currentLabel;
             const previousTickValue = ticks[index - 1].value;
             const previousLabel = labels[previousTickValue as number];
-
-            // 年が変わっていれば年を表示、変わっていなければ月日のみ表示
             if (previousLabel && currentLabel.substring(0, 4) !== previousLabel.substring(0, 4)) {
-                return currentLabel; // "YYYY/MM/DD"
+              return currentLabel;
             } else {
-                return currentLabel.substring(5); // "MM/DD"
+              return currentLabel.substring(5);
             }
           }
         }
@@ -106,7 +104,7 @@ export const VisitorChart = ({ visitorData }: VisitorChartProps) => {
   } as const;
 
   // 1画面に表示したいデータ数。この数値を変更すれば密度を調整できます。
-  const VISIBLE_DATA_COUNT = 20;
+  const VISIBLE_DATA_COUNT = 25;
 
   // 基準とする画面幅（ピクセル単位）。一般的なスマートフォンの幅を想定しています。
   const BASE_SCREEN_WIDTH = 390; 

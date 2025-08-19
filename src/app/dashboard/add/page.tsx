@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { db } from '@/lib/firebase/firabase';
 import { doc, setDoc } from 'firebase/firestore';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 export default function DataInputForm () {
   const [date, setDate] = useState('');
@@ -78,6 +79,7 @@ export default function DataInputForm () {
         >
           追加/更新
         </button>
+        <Link href="/dashboard" className="block w-full mt-4 mb-8 text-center bg-white text-gray-900 rounded px-4 py-2 border border-gray-800 hover:cursor-pointer hover:shadow-lg">戻る</Link>
       </form>
       {message && <p className="mt-4 text-center text-sm text-gray-600">{message}</p>}
     </div>

@@ -6,6 +6,7 @@ import { collection, onSnapshot, query, orderBy } from 'firebase/firestore';
 
 import { VisitorChart } from '@/components/VisitorChart';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 export default function DashboardPage() {
   const [visitorData, setVisitorData] = useState<Record<string, number>>({});
@@ -35,12 +36,11 @@ export default function DashboardPage() {
 
   return (
     <main className="flex min-h-screen flex-col items-center p-4 md:p-8">
-      <h1 className="text-2xl font-bold mt-16 mb-6">店舗ダッシュボード</h1>
       <div className="w-full max-w-4xl mt-6">
-        <h2 className="text-xl font-semibold mb-4">来店人数グラフ</h2>
-        <div className="relative h-[50vh] w-full p-4 bg-white shadow-lg rounded-lg overflow-x-auto">
+        <h2 className="text-xl font-semibold mt-4">来店人数グラフ</h2>
+        <div className="relative h-[75vh] w-full p-2 bg-white shadow-lg rounded-lg overflow-x-auto">
           {isLoading ? (
-            <p>データを読み込み中...</p>  
+            <p>データを読み込み中...</p>    
           ) : Object.keys(visitorData).length > 0 ? (
             <VisitorChart visitorData={visitorData} />
           ) : (
@@ -48,7 +48,7 @@ export default function DashboardPage() {
           )}
         </div>
       </div>
-      <button onClick={ addVisitorData } className="w-full mt-4 text-center bg-gray-900 text-white rounded px-4 py-2 hover:cursor-pointer hover:shadow-lg">データを追加/更新</button>
+      <button onClick={ addVisitorData } className="w-full mt-4 text-center bg-gray-900 text-white rounded px-4 py-2 hover:cursor-pointer hover:shadow-lg">人数を記録する</button>
     </main>
   );
 }
