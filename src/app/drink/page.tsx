@@ -183,7 +183,7 @@ export default function Home() {
           </tbody>
         </table>
         <button onClick={ onClickComplete } className="w-full mt-4 text-center bg-gray-900 text-white rounded px-4 py-2 hover:cursor-pointer hover:shadow-lg">入力完了</button>
-        <a className="block w-full mt-4 mb-8 text-center bg-white text-gray-900 rounded px-4 py-2 border border-gray-800 hover:cursor-pointer hover:shadow-lg" target="_blank" rel="noopener noreferrer" href="https://script.google.com/macros/s/AKfycbyh9Htl13kFOACok61A4uk1_D4mHUndAo-6aEGGGfFYIBqOyIMRy1-EOuqzJBjCtU2T/exec">店長に送信</a>
+        <a className="block w-full mt-4 mb-8 text-center bg-white text-gray-900 rounded px-4 py-2 border border-gray-800 hover:cursor-pointer hover:shadow-lg" target="_blank" rel="noopener noreferrer" href="https://script.google.com/macros/s/AKfycbyQYJodMfit3v-TVCZNhOOAQZCx4Fs6ZbS0URatz43Dbuan3jni26P8DaZnpI77g_qB/exec">店長に送信</a>
       </div>
     </div>
   );
