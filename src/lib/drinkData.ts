@@ -30,7 +30,7 @@ export const Drinks:Drink[] = [
   {
     name: "YUZU_CIDER",
     japaneseName: "ゆずサイダー(10)",
-    required: 15,
+    required: 20,
   },
   {
     name: "YUZU_CHUHAI",
