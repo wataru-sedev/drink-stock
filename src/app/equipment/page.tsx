@@ -77,7 +77,7 @@ export default function Equipmentpage(){
                                 type="number"
                                 value={ quantity === undefined ? '' : quantity }
                                 onChange={(e) => onChangeQuantity(index, e.target.value)}
-                                className="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2"
+                                className="w-full bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2"
                               />
                               <button onClick={() => handleSetOverstock(index)} className="p-2 text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700" title="在庫十分">
                                 ✓

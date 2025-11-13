@@ -132,7 +132,7 @@ export default function Home() {
                       type="number"
                       value={memo || ''}
                       onChange={(e) => onChangeMemo(index, e.target.value)}
-                      className="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-1"
+                      className="w-full bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-1"
                     />
                   </td>
                       <td className="px-1 py-4 sm:px-6">
@@ -144,7 +144,7 @@ export default function Home() {
                             type="number"
                             value={quantity === undefined ? '' : quantity}
                             onChange={(e) => onChangeQuantity(index, e.target.value)}
-                            className="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2"
+                            className="w-full bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2"
                           />
                           <button
                             onClick={() => handleSetOverstock(index)}
